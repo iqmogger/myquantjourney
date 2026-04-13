@@ -7,7 +7,7 @@ df = yf.download("AAPL", start="2024-01-01", end="2024-12-31") # Wrote this part
 # Formula: (t − y) / y
 # Where t = today's price   and   y = yesterday's price
 
-df["Return"] = df.["Close"].pct_change()   # pct change is very imporant. I'm guessing that it calculates the difference between each one.
+df["Return"] = df["Close"].pct_change()   # pct change is very imporant. I'm guessing that it calculates the difference between each one.
 print(df["Return"].describe())   # .describe is new, it looks at every number in that column and spits out a summary (below)
 
 #count — how many rows have a value
