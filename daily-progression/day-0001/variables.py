@@ -23,3 +23,7 @@ profit = total_value - (cost_basis * shares)
 
 
 # f-strings
+print(f"ticker: {ticker}")
+print(f"price per share: ${price}")
+
+# I knew this as well. F strings just mean "look for {} and replace it with the right value"
