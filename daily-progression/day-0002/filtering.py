@@ -3,8 +3,8 @@ import pandas as pd
 
 df = yf.download("AAPL", start="2024-01-01", end="2024-12-31")
 
-df["Return"] = df.["Close"].pct_change()   
-print(df["Return"]describe())  
+df["Return"] = df["Close"].pct_change()   
+print(df["Return"].describe())  
 
 # Find all days where the stock went up more than 2%
 big_up_days = df[df["Return"] > 0.02]     
