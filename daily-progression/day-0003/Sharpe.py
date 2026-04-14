@@ -1,0 +1,9 @@
+# Sharpe ratio = (avg return - risk-free rate) / volatility
+# Risk-free rate ≈ 4% annual = 0.04/252 per day
+# It answers: "How much return do I get per unit of risk?"
+
+mean_return = apple['Daily_Return'].mean()
+risk_free_rate = 0.04 / 252
+sharpe = (mean_return - risk_free_rate) / volatility
+
+print(f"Sharpe ratio: {sharpe:.2f}")
