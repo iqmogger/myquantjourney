@@ -1,3 +1,9 @@
+import pandas as pd
+import yfinance as yf
+
+# Download Apple stock for the last year
+apple = yf.download('AAPL', start='2025-01-01', end='2026-01-01')
+
 # Sharpe ratio = (avg return - risk-free rate) / volatility
 # Risk-free rate ≈ 4% annual = 0.04/252 per day
 # It answers: "How much return do I get per unit of risk?"
