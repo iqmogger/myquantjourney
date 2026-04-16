@@ -1,4 +1,4 @@
-# Day 0003 — Time Series Analysis & Financial Metrics
+# Day 0004 
 
 ## What I Learned
 
