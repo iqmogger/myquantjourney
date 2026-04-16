@@ -35,16 +35,14 @@ print(f"Lowest: {lowest.index[0]} = {lowest.iloc[0]:.4f}")
 
 
 
-weights = np.array([0.20, 0.20, 0.20, 0.20, 0.20])
+weights = np.array([0.20, 0.20, 0.20, 0.20, 0.20])     # np
 
-portfolio_returns = daily.dot(weights)   # dot = matrix multiplication
+portfolio_returns = daily.dropna().dot(weights)   # dot = matrix multiplication     # Dropna drops NaN 
 
-volatility = daily.std()
-dr_avg = daily.mean()
+volatility = portfolio_returns.std()
+dr_avg = portfolio_returns.mean()
 risk_free_rate = 0.04 / 252
 sharpe = (dr_avg - risk_free_rate) / volatility
 
 
-print(f" daily avg = {dr_avg}
-volatility: {volatility}
-Sharpe: {sharpe}")
+print(f" daily avg = {dr_avg:.4f}\nvolatility: {volatility:.4f}\nSharpe: {sharpe:4f}")   # f-strings MUST use \ formatting.
