@@ -1,6 +1,7 @@
 # Sharpe ratio = (avg return - risk-free rate) / volatility
 # Risk-free rate ≈ 4% annual = 0.04/252 per day
 # It answers: "How much return do I get per unit of risk?"
+apple['Daily Return'] = apple['Close'].pct_change()
 
 mean_return = apple['Daily_Return'].mean()
 risk_free_rate = 0.04 / 252
