@@ -48,6 +48,25 @@ print(f"Strategy Sharpe:       {strategy_sharpe:.2f}")
 print(f"Buy & hold Sharpe:     {buyhold_sharpe:.2f}")     # the rest is just data.
 
 
+#------------- NOTES --------------
+
+
+# Here's how to remove the ... in the output:
+
+# pd.set_option('display.max_rows', None)
+# This is if you want it for all
+
+# with pd.option_context('display.max_rows', None):
+#    print(data)
+# if you want it only for 1 thing
+
+# But most of the time you'd look at charts
+
+
+#----------------------------------
+
+
+
 #Result:
 
 #==================================================
