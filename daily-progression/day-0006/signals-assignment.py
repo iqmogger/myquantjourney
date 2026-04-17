@@ -27,7 +27,7 @@ data['cum_buyhold'] = (1 + data['daily_return']).cumprod()
 
 # Total returns
 total_strategy = data['cum_strategy'].iloc[-1] - 1
-total_buyhold = data['cum_buyhold'].iloc[-1] - 1
+total_buyhold = data['cum_buyhold'].iloc[-1] - 1         # .iloc stands for integer location. It's how you grab rows or values by their numerical position.
 
 def get_sharpe(returns, risk_free_annual=0.04):
     daily_rf = risk_free_annual / 252
@@ -50,6 +50,11 @@ print(f"Buy & hold Sharpe:     {buyhold_sharpe:.2f}")     # the rest is just dat
 
 #------------- NOTES --------------
 
+
+#The trading logic: When the 20-day average is above the 50-day average, it means prices over the last 20 days have been higher than over the last 50 days — i.e., the stock is in an uptrend. So the rule says "be long during uptrends, be flat during downtrends."
+
+
+#----------------------------------
 
 # Here's how to remove the ... in the output:
 
