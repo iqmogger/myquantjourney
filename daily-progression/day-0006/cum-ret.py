@@ -20,4 +20,4 @@ data['strategy_return'] = data['position'].shift(1) * data['Close'].pct_change()
 
 # Cumulative return = how much $1 would be worth
 data['cumulative_strategy'] = (1 + data['strategy_return']).cumprod()
-data['cumulative_buy_hold'] = (1 + data['Close'].pct_change()).cumprod()
+data['cumulative_buy_hold'] = (1 + data['Close'].pct_change()).cumprod()    # Basically these two last rows compare "buy + hold" and the strategy you're testing.
