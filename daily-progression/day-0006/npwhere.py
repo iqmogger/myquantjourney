@@ -12,3 +12,10 @@ import numpy as np
 # np.where(condition, value_if_True, value_if_False)
 data['position'] = np.where(data['Close'] > data['SMA_20'], 1, 0)    # Just finds where exactly daily ret. is more that 20 day SMA. returns 1 or 0 (or -1). 
 print(data['position'])
+
+# 1 = 
+
+
+# Np.where() says this:
+
+#"on this past day, had I been trading, here's what position I would have held."
