@@ -54,6 +54,15 @@ print(f"Buy & hold Sharpe:     {buyhold_sharpe:.2f}")     # the rest is just dat
 #The trading logic: When the 20-day average is above the 50-day average, it means prices over the last 20 days have been higher than over the last 50 days — i.e., the stock is in an uptrend. So the rule says "be long during uptrends, be flat during downtrends."
 
 
+#-----------------------------------
+
+#Recall: cum_strategy was built with (1 + strategy_return).cumprod(). That column represents the growth multiplier of $1 over time. So if the last value is 1.45, it means $1 grew into $1.45 — a 45% gain.
+
+#data['cum_strategy'] — the whole growth multiplier column
+#.iloc[-1] — grab the very last row (the final growth multiplier)
+#- 1 — subtract 1 to convert growth multiplier into return percentage
+
+
 #----------------------------------
 
 # Here's how to remove the ... in the output:
