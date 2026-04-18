@@ -60,7 +60,7 @@ Signal tell it what to do, position is what position it takes. The context is ba
 Because it has 3 possible outputs: 1, 0, -1. Booleans have 2. 3 outputs is better because then it tells you when to short and when to long.
 
 **Q4: What does `.cumprod()` do to a Series of daily returns, and why does it compute total return?**
-[Your an
+it multiplies each value by all the ones before it. Makes it easier to calculate total returns, aka "how much would a dollar be worth".
 
 **Q5: Did your SMA crossover beat buy-and-hold on SPY? If not, why might a simple strategy underperform?**
 No, probably because the strategy wasn't the best (very simple) and a lot happened between 2020 and 2025 (wars, crises, etc.) which might have affected it.
