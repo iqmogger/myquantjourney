@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 # Make some fake data — 100 days of a random-walk "price"
-np.random.seed(42)  # makes the randomness reproducible
+np.random.seed(42)  # makes the randomness reproducible.   Random number generators aren't actually random, they're based on a starting number called a "seed."
 daily_changes = np.random.randn(100) * 0.01  # small random daily % moves
 fake_price = 100 * (1 + pd.Series(daily_changes)).cumprod()
 
