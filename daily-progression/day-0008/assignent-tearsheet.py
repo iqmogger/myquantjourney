@@ -2,57 +2,48 @@ import yfinance as yf
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-
+ 
 def get_prices(ticker, start='2020-01-01', end='2026-01-01'):
-  data = yf.download(ticker, start, end, auto_adjust=True)
-  data.columns = data.columns.droplevel(1)
-  data['Close']
-  return data['Close']
-
+    data = yf.download(ticker, start=start, end=end, auto_adjust=True)
+    data.columns = data.columns.droplevel(1)
+    return data['Close']
+ 
 def sma_backtest(prices):
-  sma_fast = prices.rolling(20).mean()
-  sma_slow = prices.rolling(50).mean()
-  signal = np.where(sma_slow < sma_fast, 1, 0)
-  signal = pd.Series(signal, index=prices.index)
-  position = signal.shift(1)
-  daily_ret = prices.pct_change()
-  strat_returns = position * daily_ret
-  return strat_returns, daily_ret
-
+    sma_fast = prices.rolling(20).mean()
+    sma_slow = prices.rolling(50).mean()
+    signal = np.where(sma_slow < sma_fast, 1, 0)
+    signal = pd.Series(signal, index=prices.index)
+    position = signal.shift(1)
+    daily_ret = prices.pct_change()
+    strat_returns = position * daily_ret
+    return strat_returns.dropna(), daily_ret.dropna()
+ 
 def calc_metrics(returns):
-  equity = (1 + returns).cumprod()
-  peak = equity.cummax()
-  dd = (equity - peak) / peak
-  years = len(equity) / 252
-  cagr = (equity.iloc[-1] ** (1/years)) - 1     
-  ann_vol = returns.std() * np.sqrt(252)      # uses returns
-  sharpe = (returns.mean() * 252) / ann_vol       # uses returns
-  max_dd = dd.min()       # uses dd
-  calmar = cagr / abs(max_dd) if max_dd != 0 else 0       # uses cagr and max_dd
-  return {
-  'years' : years, 
-  'cagr' : cagr,   
-  'ann_vol' : ann_vol,   
-  'sharpe' : sharpe,     
-  'max_dd' : max_dd,
-  'calmar' : calmar   
-  }
-    
-
+    equity = (1 + returns).cumprod()
+    peak = equity.cummax()
+    dd = (equity - peak) / peak
+    years = len(equity) / 252
+    cagr = (equity.iloc[-1] ** (1 / years)) - 1
+    ann_vol = returns.std() * np.sqrt(252)
+    sharpe = (returns.mean() * 252) / ann_vol
+    max_dd = dd.min()
+    calmar = cagr / abs(max_dd) if max_dd != 0 else 0
+    return {
+        'years': round(years, 2),
+        'cagr': round(cagr, 4),
+        'ann_vol': round(ann_vol, 4),
+        'sharpe': round(sharpe, 2),
+        'max_dd': round(max_dd, 4),
+        'calmar': round(calmar, 2)
+    }
+ 
 def generate_tearsheet(tickers):
-  all_results = {}
-  strat_results= {}
-  bh_results = {}
-  for ticker in tickers:
-    prices = get_prices(ticker)       
-    strat_returns, bh_returns = sma_backtest(prices)  
-    strat_results = calc_metrics(strat_returns)
-    bh_results = calc_metrics(bh_returns)
-    strat_results[ticker] = strat_metrics 
-    bh_results[ticker] = bh_metrics
-    all_results[ticker] = metrics       
-# METRICS:
-for ticker in tickers:
+    strat_results = {}
+    bh_results = {}
+    strat_curves = {}
+    bh_curves = {}
+ 
+    for ticker in tickers:
         print(f"Running backtest on {ticker}...")
         prices = get_prices(ticker)
         strat_returns, bh_returns = sma_backtest(prices)
