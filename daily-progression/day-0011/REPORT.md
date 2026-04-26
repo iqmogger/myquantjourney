@@ -18,13 +18,6 @@
 - `None` — Python's "nothing" value, used when a function has no result to give
 - `as e` in `except Exception as e` saves the error message into a variable
 
-## The Code
-- `lists_deep.py` — slicing, len, in, append, remove
-- `list_comp.py` — list comprehensions and dictionary comprehensions
-- `cleaning.py` — NaN detection, dropna, fillna, ffill
-- `outliers.py` — finding outlier days beyond 3σ, removing vs winsorizing
-- `pipeline.py` — full clean_pipeline() function across 6 tickers
-
 ## Questions
 
 **Q1: What's the difference between dropna() and fillna(0) for returns data? When would you use each?**
